@@ -13,10 +13,12 @@
   {{ .Content }}
   <ul>
     {{ range .Paginator.Pages }}
+    {{ if not .Params.Hidden }}
     <li>
       <span class="date">{{ .Date | time.Format (.Site.Params.dateFormat | default "January 2, 2006" ) }}</span>
       <a class="title" href="{{ .Params.externalLink | default .RelPermalink }}">{{ .Title }}</a>
     </li>
+    {{ end }}
     {{ end }}
   </ul>
   {{ partial "pagination.html" . }}
